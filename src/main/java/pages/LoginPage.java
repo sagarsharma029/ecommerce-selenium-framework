@@ -1,7 +1,6 @@
 package pages;
 
 import base.BasePage;
-import com.fasterxml.jackson.databind.ser.Serializers;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -12,6 +11,7 @@ public class LoginPage extends BasePage{
         super(driver);
     }
 
+    //Login section
     @FindBy(css = "input[data-qa='login-email']")
     private WebElement emailInput;
 
@@ -32,5 +32,21 @@ public class LoginPage extends BasePage{
 
     public boolean isLoginErrorDisplayed(){
         return loginErrorMsg.isDisplayed();
+    }
+
+    // Signup section
+    @FindBy(css = "input[data-qa='signup-name']")
+    private WebElement signupNameInput;
+
+    @FindBy(css = "input[data-qa='signup-email']")
+    private WebElement signupEmailInput;
+
+    @FindBy(css = "button[data-qa='signup-button']")
+    private WebElement signupButton;
+
+    public void signup(String name, String email){
+        signupNameInput.sendKeys(name);
+        signupEmailInput.sendKeys(email);
+        signupButton.click();
     }
 }

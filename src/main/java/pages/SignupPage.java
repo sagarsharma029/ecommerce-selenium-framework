@@ -1,9 +1,16 @@
 package pages;
 
 import base.BasePage;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class SignupPage extends BasePage {
 
@@ -50,18 +57,25 @@ public class SignupPage extends BasePage {
     @FindBy(css = "button[data-qa='create-account']")
     private WebElement createAccountBtn;
 
+    @FindBy(css = "a[data-qa='continue-button']")
+    private WebElement continueBtn;
+
     public void fillAccountDetails() {
+
         titleMr.click();
         password.sendKeys("Password@123");
-
+        new Select(days).selectByValue("10");
+        new Select(months).selectByValue("5");
+        new Select(years).selectByValue("1995");
         firstName.sendKeys("Sagar");
         lastName.sendKeys("Sharma");
-        address.sendKeys("Test 1/23, 456 Apartments");
+        address.sendKeys("Test Address");
         state.sendKeys("Delhi");
         city.sendKeys("Delhi");
         zipCode.sendKeys("110001");
         mobileNumber.sendKeys("9876543210");
 
         createAccountBtn.click();
+        continueBtn.click();
     }
 }
